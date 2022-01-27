@@ -21,7 +21,10 @@ class Reflection {
         mTargetClass = targetClass
         return this
     }
-
+    fun on(target: Any): Reflection {
+        mTargetClass = target.javaClass
+        return this
+    }
 
     fun method(methodName: String, vararg args: Class<*>): Reflection {
         mMethodName = methodName
