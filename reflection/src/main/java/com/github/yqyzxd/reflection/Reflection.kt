@@ -67,7 +67,7 @@ class Reflection {
         return this
     }
 
-    fun <T> invoke(target: Any? = null, vararg args: Any): T? {
+    fun <T> invoke(target: Any? = null, vararg args: Any?): T? {
 
 
         mTargetClass?.apply {
@@ -75,8 +75,14 @@ class Reflection {
             try {
                 var result: Any? = null
                 if (mMethodName != null) {
-                    val method = whichMethod()
-                    result = method?.invoke(target, args)
+                    result = whichMethod()?.apply {
+                        if (args.isNullOrEmpty()){
+                            invoke(target)
+                        }else{
+                            invoke(target, args)
+                        }
+                    }
+
                 } else if (mFieldName != null) {
                     val field = whichField()
                     result = field?.get(target)
