@@ -75,8 +75,8 @@ class Reflection {
             try {
                 var result: Any? = null
                 if (mMethodName != null) {
-                    result = whichMethod()?.apply {
-                        if (args.isNullOrEmpty()){
+                    whichMethod()?.apply {
+                        result=if (args.isNullOrEmpty()){
                             invoke(target)
                         }else{
                             invoke(target, *args)
