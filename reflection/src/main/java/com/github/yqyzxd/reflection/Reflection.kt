@@ -79,7 +79,7 @@ class Reflection {
                         if (args.isNullOrEmpty()){
                             invoke(target)
                         }else{
-                            invoke(target, args)
+                            invoke(target, *args)
                         }
                     }
 
